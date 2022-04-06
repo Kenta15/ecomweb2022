@@ -1,0 +1,14 @@
+#country{
+    position:absolute;
+    font-size:15px;
+}
+#country-btn{
+    position:absolute;
+    font-size: 15px;
+    left:450px;
+}
+#back-btn{
+    position:absolute;
+    font-size: 15px;
+    left:650px;
+}
