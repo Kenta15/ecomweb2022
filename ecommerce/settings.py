@@ -26,7 +26,7 @@ STATIC_DIR = os.path.join(BASE_DIR,'static')
 SECRET_KEY = 'django-insecure-e^%pze@x3*=&ox79#^jido8q!kztjmhj^!n=342xp(e)ad+s*r'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
 ALLOWED_HOSTS = ['arcane-everglades-02824.herokuapp.com','127.0.0.1']
 
@@ -131,7 +131,7 @@ STATIC_ROOT = os.path.join(BASE_DIR,'staticfiles')
 STATICFILES_DIRS = [
     STATIC_DIR,
 ]
-MEDIA_ROOT = os.path.join(BASE_DIR,'staticfiles')
+# MEDIA_ROOT = os.path.join(BASE_DIR,'staticfiles')
 MEDIA_ROOT = os.path.join(BASE_DIR,'static/images')
 MEDIA_URL = 'images/'
 # Default primary key field type
