@@ -1,0 +1,94 @@
+{% extends 'store/base.html' %}
+{% load static %}
+{% block content %}
+<div id="empty-message">
+    <div class="box-element" style="margin-bottom:20px;">
+        <h2 style="padding:30px 0 0 30px;">
+            Your cart is empty.
+        </h2>
+        <p style="padding-left:30px;">Here's some reccomendations for you!
+        Continue shopping on <a href="{% url 'store' %}">Store</a>,
+        visit our <a href="{% url 'bestseller' %}">Best seller</a>.
+        </p>
+    </div>
+
+    <div class="box-element">
+        <div class="row">
+            {% for product in products %}
+                {% if product.rank <= 8 %}
+                <div class="col-lg-3">
+                    <img class="thumbnail" src="{{product.imageURL}}">
+                    <div class="product">
+                        <h6 style="float:right; color:#F62817;">${{product.price|floatformat:2}}</h6>
+                        <h6>{{product.name}}</h6>
+                        <button data-product={{product.id}} data-action="add" class="btn btn-secondary add-btn update-cart">Add to Cart</button>
+                    </div>
+                </div>
+                {% endif %}
+            {% endfor %}
+        </div>
+    </div>
+</div>
+
+<div class="row" id="row">
+    <div class="col-lg-12">
+        <div>
+            <a class="btn btn-outline-dark" href="{% url 'store' %}"> &#x2190; Continue Shopping</a>
+            <br>
+            <br>
+            <table class="table">
+                <tr>
+                    <th><h5>Items: <strong>{{order.get_cart_quantity}}</strong></h5></th>
+                    <th><h5>Total: <strong>${{order.get_cart_total|floatformat:2}}</strong></h5></th>
+                    <th>
+                        <a style="float:right:margin:5px" class="btn btn-success"
+                        href="{% url 'checkout' %}">Checkout</a>
+                    </th>
+                </tr>
+            </table>
+        </div>
+
+        <br>
+
+        <div>
+            <div class ="cart-row">
+                <div style="flex:2"></div>
+                <div style="flex:2"><strong>Item</strong></div>
+                <div style="flex:1"><strong>Price</strong></div>
+                <div style="flex:1"><strong>Quantity</strong></div>
+                <div style="flex:1"><strong>Total</strong></div>
+            </div>
+
+            {% for item in items%}
+            <div class ="cart-row">
+                <div style="flex:2"><img class="row-image" src="{{item.product.imageURL}}"></div>
+                <div style="flex:2">{{item.product.name}}</div>
+                <div style="flex:1">${{item.product.price|floatformat:2}}</div>
+                <div style="flex:1">
+                    <p class="quantity">{{item.quantity}}</p>
+                    <div class="quantity">
+					    <img data-product={{item.product.id}} data-action="add" class="chg-quantity update-cart" src="{% static  'images/arrow-up.png' %}">
+					    <img data-product={{item.product.id}} data-action="remove" class="chg-quantity update-cart" src="{% static  'images/arrow-down.png' %}">
+				    </div>
+                </div>
+                <div style="flex:1">${{item.get_total}}</div>
+            </div>
+            {% endfor %}
+
+        </div>
+    </div>
+</div>
+
+<script type="text/javascript">
+
+    var quantity = '{{order.get_cart_total}}'
+    if(quantity==0){
+        document.getElementById("row").classList.add('hidden')
+    }
+    else{
+        document.getElementById("empty-message").classList.add('hidden')
+    }
+    
+</script>
+
+{% endblock %}

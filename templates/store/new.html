@@ -1,0 +1,25 @@
+{% extends 'store/base.html' %}
+{% load static %}
+{% block content %}
+
+<h4>New Releases</h4>
+
+<div class="store-page">
+	<div class="row">
+		{% for product in products %}
+            {% if product.is_new == True %}
+            <div class="col-lg-3">
+                <img class="thumbnail" src="{{product.imageURL}}">
+                <img class="new" src="{% static 'images/new.jpeg' %}">
+                <div class="product">
+                    <h6 style="float:right; color:#F62817;">${{product.price|floatformat:2}}</h6>
+                    <h6>{{product.name}}</h6>
+                    <button data-product={{product.id}} data-action="add" class="btn btn-secondary add-btn update-cart">Add to Cart</button>
+                </div>
+            </div>
+            {% endif %}
+		{% endfor %}
+	</div>
+</div>
+
+{% endblock content %}

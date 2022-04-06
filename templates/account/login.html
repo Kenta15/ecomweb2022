@@ -1,0 +1,36 @@
+{% load static %}
+<link rel="stylesheet" type="text/css" href="{% static 'css/login.css' %}">
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Eshop.com</title>
+</head>
+<body>
+<div class="container">
+	<section id="content">
+		<form method="POST">
+            {% csrf_token %}
+			<h1>Sign in</h1>
+            <p class="tag">Username</p>
+			<div>
+				<input type="text" name="username" required />
+			</div>
+            <p class="tag">Password</p>
+			<div>
+				<input type="password" name="password" required />
+			</div>
+			{% for message in messages%}
+				<p id="error-message">{{message}}</p>
+			{% endfor %}
+			<div>
+				<input type="submit" value="Log in"/>
+				<a href="{% url 'forgot' %}" class="link">Forgot your password?</a>
+				<a href="{% url 'register' %}" class="link">Sign Up</a>
+			</div>
+		</form>
+	</section>
+</div>
+</body>
+</html>

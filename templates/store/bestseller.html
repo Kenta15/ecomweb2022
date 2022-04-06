@@ -1,0 +1,21 @@
+{% extends 'store/base.html' %}
+{% load static %}
+{% block content %}
+
+<h4>Best Sellers</h4>
+
+<div class="row">
+    {% for product in array %}
+        <div class="col-lg-3">
+            <p>{{product.rank}}</p>
+            <img class="thumbnail" src="{{product.imageURL}}">
+            <div class="product">
+                <h6 style="float:right; color:#F62817;">${{product.price|floatformat:2}}</h6>
+                <h6>{{product.name}}</h6>
+                <button data-product={{product.id}} data-action="add" class="btn btn-secondary add-btn update-cart">Add to Cart</button>
+            </div>
+        </div>
+    {% endfor %}
+</div>
+
+{% endblock content %}

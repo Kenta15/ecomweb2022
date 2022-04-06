@@ -1,0 +1,51 @@
+{% load static %}
+<link rel="stylesheet" type="text/css" href="{% static 'css/login.css' %}">
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Eshop.com</title>
+</head>
+<body>
+<div class="container">
+	<section id="content">
+		<form id="form" method="POST" onsubmit="return false">
+            {% csrf_token %}
+			<h1>Reset Password</h1>
+            <p class="tag">Username</p>
+			<div>
+				<input type="text" name="username" required />
+			</div>
+            <p class="tag">Email</p>
+			<div>
+				<input type="email" name="email" required />
+			</div>
+			{% for message in messages%}
+				<p id="error-message">{{message}}</p>
+			{% endfor %}
+			<div>
+				<input type="submit" value="Send email"/>
+                <a href="{% url 'login' %}" class="link">Sign In</a>
+				<a href="{% url 'register' %}" class="link">Sign Up</a>
+			</div>
+		</form>
+	</section>
+</div>
+</body>
+</html>
+
+<script>
+    const form = document.getElementById('form')
+
+    form.addEventListener("submit",function(){
+        swal({
+            title:'The email was successfully sent!',
+            icon:'success',
+            }).then((val)=>{
+            window.location.href = "{% url 'store' %}"
+        });
+    })
+
+</script>

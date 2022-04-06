@@ -1,0 +1,29 @@
+{% extends 'store/base.html' %}
+{% load static %}
+{% block content %}
+
+<link rel="stylesheet" type="text/css" href="{% static 'css/transition.css' %}">
+
+<h4>Daily Necessities</h4>
+
+<div class="row slide-in">
+    {% for product in products%}
+        {% if product.category == "Dailies" %}
+            <div class="col-lg-3">
+                <img class="thumbnail" src="{{product.imageURL}}">
+                {% if product.is_new == True %}
+				    <img class="new" src="{% static 'images/new.jpeg' %}">
+			    {% endif %}
+                <div class="product">
+                    <h6 style="float:right; color:#F62817;">${{product.price|floatformat:2}}</h6>
+                    <h6>{{product.name}}</h6>
+                    <button data-product={{product.id}} data-action="add" class="btn btn-secondary add-btn update-cart">Add to Cart</button>
+                </div>
+            </div>
+        {% endif %}
+    {% endfor %}
+</div>
+<a class="left" href="{% url 'book' %}"><img class="L" src="{% static 'images/L.png' %}"></a>
+<a class="right" href="{% url 'kitchen' %}"><img class="R" src="{% static 'images/R.png' %}"></a>
+
+{% endblock content %}

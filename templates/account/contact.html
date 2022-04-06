@@ -1,0 +1,45 @@
+{% extends 'store/base.html' %}
+{% load static %}
+{% block content %}
+
+<link rel="stylesheet" type="text/css" href="{% static 'css/contact.css' %}">
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+
+<div class="container">  
+  <form id="contact" action="" method="post" onsubmit="return false">
+    {% csrf_token %}
+    <h3>Contact Form</h3>
+    <select name="select">
+            <option value="Return items">Return items</option>
+            <option value="Memberships or Subscriptions">Memberships or Subscriptions</option>
+            <option value="Payment methods">Payment methods</option>
+            <option value="Login or security & privacy">Login or security & privacy</option>
+            <option value="Something else">Something else</option>
+    </select>
+    <fieldset>
+      <input placeholder="Your Email Address" type="email" tabindex="2" required>
+    </fieldset>
+    <fieldset>
+      <textarea placeholder="Type your message here...." tabindex="5" required></textarea>
+    </fieldset>
+    <fieldset>
+      <button name="submit" type="submit" id="contact-submit" data-submit="...Sending">Submit</button>
+    </fieldset>
+  </form>
+</div>
+
+<script>
+    const form = document.getElementById('contact')
+
+    form.addEventListener("submit",function(){
+        swal({
+            title:'Thank you for contacting us!',
+            icon:'success',
+            }).then((val)=>{
+            location.reload()
+        });
+    })
+
+</script>
+
+{% endblock %}

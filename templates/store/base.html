@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+{% load static %}
+<html>
+<head>
+	<title>Eshop.com</title>
+
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1" />
+
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+	<link rel="stylesheet" type="text/css" href="{% static 'css/home.css' %}">
+
+	<script type="text/javascript">
+		var user = '{{request.user}}'
+
+		function getToken(name){
+			var cookieValue = null;
+			if(document.cookie && document.cookie !==''){
+				var cookies = document.cookie.split(';')
+				for(var i=0;i<cookies.length;i++){
+					var cookie = cookies[i].trim();
+					if(cookie.substring(0,name.length+1)===(name+'=')){
+						cookieValue = decodeURIComponent(cookie.substring(name.length+1));
+						break;
+					}
+				}
+			}
+			return cookieValue;
+		}
+		var csrftoken = getToken('csrftoken');
+
+		function getCookie(name){
+			var cookieArr = document.cookie.split(";");
+			
+			for(var i = 0;i < cookieArr.length;i++){
+				var cookiePair = cookieArr[i].split("=");
+
+				if(name == cookiePair[0].trim()){
+					return decodeURIComponent(cookiePair[1]);
+				}
+			}
+			return null;
+		}
+		var cart = JSON.parse(getCookie('cart'))
+
+		if(cart == undefined){
+			cart = {}
+			console.log('Cart was created!')
+			document.cookie = 'cart=' + JSON.stringify(cart) + ";domain=;path=/"
+		}
+
+		console.log('cart:',cart)
+
+
+		var country = JSON.parse(getCookie('country'))
+
+		if(country == undefined){
+			country = {}
+			document.cookie = 'country=' + JSON.stringify(country) + ";domain=;path=/"
+		}
+
+	</script>
+
+</head>
+
+<body>
+	<input type="checkbox" id="check">
+
+	<div class="sidebar">
+		<header>Eshop.com</header>
+		<ul>
+			<li><a href="{% url 'bestseller' %}" class="links">Best Sellers</a></li>
+			<li><a href="{% url 'new' %}" class="links">New Releases</a></li>
+
+			<section>Shop By Depertment</section>
+			<li><a href="{% url 'grocery' %}" class="links">Groceries</a></li>
+			<li><a href="{% url 'gaming' %}" class="links">Gaming Products</a></li>
+			<li><a href="{% url 'electronic' %}" class="links">Electronics</a></li>
+			<li><a href="{% url 'apparel' %}" class="links">Apparel & Accessories</a></li>
+			<li><a href="{% url 'cosmetic' %}" class="links">Beauty Products</a></li>
+			<li><a href="{% url 'book' %}" class="links">Books</a></li>
+			<li><a href="{% url 'daily' %}" class="links">Daily Necessities</a></li>
+			<li><a href="{% url 'kitchen' %}" class="links">Kitchen Utensils</a></li>
+			<li><a href="{% url 'pet' %}" class="links">Pet Supplies</a></li>
+			<li><a href="{% url 'health' %}" class="links">Health & Wellness</a></li>
+
+			<section>Your Account</section>
+			<li><a href="{% url 'country' %}" id="current-country" class="links">{{country}}</a></li>
+			<li><a id="user_setting" href="{% url 'settings' %}" class="links">Settings</a></li>
+			<li><a id="setting" href="{% url 'login' %}" class="links">Settings</a></li>
+			<li><a id="signIn"href="{% url 'login' %}" class="links">Sign In</a></li>
+			<li><a href="{% url 'contact' %}" class="links">Contact Us</a></li>
+			<li><a id="logOut"href="{% url 'logout' %}" class="links">Sign Out</a></li>
+		</ul>
+	</div>
+
+
+	<nav class="navbar navbar-dark bg-dark">
+		<a class="navbar-brand" href="{% url 'store' %}">Eshop.com</a>
+		<img id="globe-icon" src="{% static 'images/globe.png' %}"><p id="language">ENG</p>
+		<form method= "POST" id="search-form">
+			{% csrf_token %}
+			<input type="search" id="serch-box" name="search" placeholder="Search">
+			<img id="serch-icon" src="{% static 'images/serch.png' %}">
+		</form>
+			<p id="login_text" class="welcome">Hello, Sign In</p>
+			<p id="logout_text" class="welcome">Hello, {{request.user}}</p>
+				<a href="{% url 'login' %}" id="login">
+					<img class="login-icon" src="{% static 'images/login.png' %}">
+				</a>
+				<a href="{% url 'logout' %}" id="logout">
+					<img class="login-icon" src="{% static 'images/logout.png' %}">
+				</a>
+				<a href="{% url 'cart' %}">
+					<img id="cart-icon" src="{% static 'images/cart.jpeg' %}">
+				</a>
+				<p id="cart-total">{{cartItems}}</p>
+	</nav>
+
+	<nav class="navbar navbar-bottom">
+		<label for="check">
+			<span id="menu-icon"<i class="fa fa-fw fa-bars fa-lg"></i></span>
+		</label>
+		<div class="category">
+			<p>Side Menu</p>
+			<a href="{% url 'grocery' %}">Groceries</a>
+			<a href="{% url 'gaming' %}">Gaming Products</a>
+			<a href="{% url 'electronic' %}">Electronics</a>
+			<a href="{% url 'apparel' %}">Apparel & Accessories</a>
+			<a href="{% url 'cosmetic' %}">Beauty Products</a>
+			<a href="{% url 'book' %}">Books</a>
+			<a href="{% url 'daily' %}">Daily Necessities</a>
+			<a href="{% url 'kitchen' %}">Kitchen Utensils</a>
+			<a href="{% url 'pet' %}">Pet Supplies</a>
+			<a href="{% url 'health' %}">Health & Wellness</a>
+		</div>
+	</nav>
+
+	<div class="container">
+		<br>
+		{% block content %}
+		{% endblock content %}
+	</div>
+
+	<label for="check">
+		<span id="cancel"><img id="cancel-icon" src="{% static 'images/cancel.jpg' %}"></span>
+	</label>
+
+	<script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+
+	<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+
+	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+
+	<script type="text/javascript" src="{% static 'js/cart.js' %}"></script>
+	<script type="text/javascript" src="{% static 'js/country.js' %}"></script>
+	<script type="text/javascript" src="{% static 'js/settings.js' %}"></script>
+
+	<script>
+
+		if(user != 'AnonymousUser'){
+			document.getElementById('login').classList.add('hidden')
+			document.getElementById('login_text').classList.add('hidden')
+			document.getElementById('signIn').classList.add('hidden')
+			document.getElementById('setting').classList.add('hidden')
+		}
+		else{
+			document.getElementById('logout').classList.add('hidden')
+			document.getElementById('logout_text').classList.add('hidden')
+			document.getElementById('logOut').classList.add('hidden')
+			document.getElementById('user_setting').classList.add('hidden')
+		}
+
+	</script>
+</body>
+</html>

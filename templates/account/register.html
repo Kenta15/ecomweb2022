@@ -1,0 +1,44 @@
+{% load static %}
+<link rel="stylesheet" type="text/css" href="{% static 'css/register.css' %}">
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Eshop.com</title>
+</head>
+<body>
+<div class="container">
+	<section id="content">
+		<form method="POST">
+            {% csrf_token %}
+			<h1>Sign Up</h1>
+            <p>Your name</p>
+			<div>
+				{{form.username}}
+			</div>
+            <p>Your email</p>
+            <div>
+				{{form.email}}
+			</div>
+            <p>Your password</p>
+			<div>
+				{{form.password1}}
+			</div>
+            <p>Confirm your password</p>
+            <div>
+				{{form.password2}}
+			</div>
+			<div>
+				{{form.errors}}
+				<input type="submit" value="Sign up"/>
+                <p>Already have an account?</p>
+                <a href="{% url 'login' %}" class="link">Sign In</a>
+			</div>
+		</form>
+	</section>
+</div>
+
+</body>
+</html>
