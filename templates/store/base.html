@@ -49,12 +49,8 @@
 
 		if(cart == undefined){
 			cart = {}
-			console.log('Cart was created!')
 			document.cookie = 'cart=' + JSON.stringify(cart) + ";domain=;path=/"
 		}
-
-		console.log('cart:',cart)
-
 
 		var country = JSON.parse(getCookie('country'))
 
@@ -101,7 +97,7 @@
 
 	<nav class="navbar navbar-top navbar-dark bg-dark">
 		<a class="navbar-brand" href="{% url 'store' %}">Eshop.com</a>
-		<img id="globe-icon" src="{% static 'images/globe.png' %}"><p id="language">ENG</p>
+		<img id="globe-icon" src="{% static 'images/globe2.png' %}"><p id="language">ENG</p>
 		<form method= "POST" id="search-form">
 			{% csrf_token %}
 			<input type="search" id="search-box" name="search" placeholder="Search">
@@ -110,13 +106,13 @@
 			<p id="login_text" class="welcome">Hello, Sign In</p>
 			<p id="logout_text" class="welcome">Hello, {{request.user}}</p>
 			<a href="{% url 'login' %}" id="login">
-				<img class="login-icon" src="{% static 'images/login.png' %}">
+				<img class="login-icon" src="{% static 'images/login2.png' %}">
 			</a>
 			<a href="{% url 'logout' %}" id="logout">
-				<img class="login-icon" src="{% static 'images/logout.png' %}">
+				<img class="login-icon" src="{% static 'images/logout2.png' %}">
 			</a>
 			<a href="{% url 'cart' %}" id="cart">
-				<img id="cart-icon" src="{% static 'images/cart.jpeg' %}">
+				<img id="cart-icon" src="{% static 'images/cart.png' %}">
 				<p id="cart-total">{{cartItems}}</p>
 			</a>
 		</div>
@@ -148,7 +144,7 @@
 	</div>
 
 	<label for="check">
-		<span id="cancel"><img id="cancel-icon" src="{% static 'images/cancel.jpg' %}"></span>
+		<span id="cancel"><i class="fa fa-close" style="color:white;"></i></span>
 	</label>
 
 	<script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
@@ -179,7 +175,7 @@
 		// Dynamic css style
 		if(window.screen.width > 450){
 			window.addEventListener('resize', () => {
-				if(window.innerWidth < 1057){
+				if(window.innerWidth < 1150){
 					$('#search-box').css('width', '500px')
 					$('body').css('overflow-x', 'auto')
 					$('.navbar').css('width', '1160px')
@@ -206,7 +202,7 @@
 			})
 
 			// default refresh
-			if(window.innerWidth < 1057){
+			if(window.innerWidth < 1150){
 				$('#search-box').css('width', '500px')
 				$('body').css('overflow-x', 'auto')
 				$('.navbar').css('width', '1160px')

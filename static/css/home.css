@@ -125,31 +125,33 @@ h1,h2,h3,h4,h5,h6{
 	font-size:15px;
 	color: white;
 	margin-top:12px;
-	margin-left:680px;
+	margin-left:660px;
 	overflow: hidden;
   	max-width: 115px;
   	text-overflow: ellipsis;
   	white-space: nowrap;
 }
 .login-icon{
-	width:40px;
 	display: inline-block;
-	margin-top:5px;
-	margin-left: 800px;
+	height:30px;
+	width:30px;
+	margin-top:7px;
+	margin-left: 770px;
 	transition:.1s;
 }
 .login-icon:hover{
-	background-color:wheat;
 	opacity: .8;
 }
 
 #cart{
 	float:right;
 	margin-top:10px;
-	margin-right:20px;
+	margin-right:10px;
+	margin-left:100px;
 }
 #cart-icon{
-	width:50px;
+	height:30px;
+	width:30px;
 	display: inline-block;
 	transition:.1s;
 }
@@ -168,8 +170,8 @@ h1,h2,h3,h4,h5,h6{
 	height: 25px;
 	border-radius: 50%;
 	font-size: 14px;
-	margin-top: -40px;
-	margin-left: 35px;
+	margin-top: -45px;
+	margin-left: 25px;
 }
 
 .navbar-brand{
@@ -244,10 +246,6 @@ label #cancel{
 
 #check:checked ~ .sidebar{
 	left:0;
-}
-
-#cancel-icon{
-	width:20px;
 }
 
 #search-form{
@@ -327,15 +325,15 @@ label #cancel{
 	}
 	.welcome{
 		margin-top:-18px;
-		margin-left:150px;
+		margin-left:130px;
 	}
 	.login-icon{
 		margin-top:-40px;
-		margin-left:240px;
+		margin-left:245px;
 	}
 	#cart{
 		position:absolute;
-		right:10px;
+		right:20px;
 		margin-top:-20px;
 		margin-right:0;
 		margin-left:0px;
