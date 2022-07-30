@@ -177,7 +177,35 @@
 		}
 
 		// Dynamic css style
-		window.addEventListener('resize', () => {
+		if(window.screen.width > 450){
+			window.addEventListener('resize', () => {
+				if(window.innerWidth < 1057){
+					$('#search-box').css('width', '500px')
+					$('body').css('overflow-x', 'auto')
+					$('.navbar').css('width', '1160px')
+					$('.row').css('width', '1060px')
+				}
+				else{
+					$('#search-box').css('width', '50vw')
+					$('body').css('overflow-x', 'hidden')
+					$('.navbar').css('width', window.innerWidth)
+					
+				}
+				if(window.innerWidth < 1160)
+					$('#kitchen').css('display', 'none')
+				else
+					$('#kitchen').css('display', 'inline')
+				if(window.innerWidth < 1280)
+					$('#pet').css('display', 'none')
+				else
+					$('#pet').css('display', 'inline')
+				if(window.innerWidth < 1425)
+					$('#health').css('display', 'none')
+				else
+					$('#health').css('display', 'inline')
+			})
+
+			// default refresh
 			if(window.innerWidth < 1057){
 				$('#search-box').css('width', '500px')
 				$('body').css('overflow-x', 'auto')
@@ -202,36 +230,10 @@
 				$('#health').css('display', 'none')
 			else
 				$('#health').css('display', 'inline')
-		})
-
-		// default refresh
-		if(window.innerWidth < 1057){
-			$('#search-box').css('width', '500px')
-			$('body').css('overflow-x', 'auto')
-			$('.navbar').css('width', '1160px')
-			$('.row').css('width', '1060px')
 		}
-		else{
-			$('#search-box').css('width', '50vw')
-			$('body').css('overflow-x', 'hidden')
-			$('.navbar').css('width', window.innerWidth)
-			
-		}
-		if(window.innerWidth < 1160)
-			$('#kitchen').css('display', 'none')
-		else
-			$('#kitchen').css('display', 'inline')
-		if(window.innerWidth < 1280)
-			$('#pet').css('display', 'none')
-		else
-			$('#pet').css('display', 'inline')
-		if(window.innerWidth < 1425)
-			$('#health').css('display', 'none')
-		else
-			$('#health').css('display', 'inline')
 		
 		// responsive
-		if(window.screen.width < 450){
+		if(window.screen.width <= 450){
 			$('.navbar').css('width', window.screen.width)
 			$('.row').css('width', window.screen.width)
 			$('#search-box').css('width', '90vw')
