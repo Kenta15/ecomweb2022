@@ -28,7 +28,7 @@ SECRET_KEY = 'django-insecure-e^%pze@x3*=&ox79#^jido8q!kztjmhj^!n=342xp(e)ad+s*r
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['arcane-everglades-02824.herokuapp.com','127.0.0.1']
+ALLOWED_HOSTS = ['ecomweb2022.herokuapp.com','127.0.0.1']
 
 
 # Application definition
