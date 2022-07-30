@@ -12,3 +12,14 @@
     font-size: 15px;
     left:650px;
 }
+
+@media (max-width:450px){
+    #country-btn{
+        top:250px;
+        left:30px;
+    }
+    #back-btn{
+        top:250px;
+        left:200px;
+    }
+}

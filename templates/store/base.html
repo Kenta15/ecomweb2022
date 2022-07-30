@@ -6,6 +6,8 @@
 
 	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1" />
 
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
 	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
 
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
@@ -97,26 +99,27 @@
 	</div>
 
 
-	<nav class="navbar navbar-dark bg-dark">
+	<nav class="navbar navbar-top navbar-dark bg-dark">
 		<a class="navbar-brand" href="{% url 'store' %}">Eshop.com</a>
 		<img id="globe-icon" src="{% static 'images/globe.png' %}"><p id="language">ENG</p>
 		<form method= "POST" id="search-form">
 			{% csrf_token %}
-			<input type="search" id="serch-box" name="search" placeholder="Search">
-			<img id="serch-icon" src="{% static 'images/serch.png' %}">
+			<input type="search" id="search-box" name="search" placeholder="Search">
 		</form>
+		<div id="resize">
 			<p id="login_text" class="welcome">Hello, Sign In</p>
 			<p id="logout_text" class="welcome">Hello, {{request.user}}</p>
-				<a href="{% url 'login' %}" id="login">
-					<img class="login-icon" src="{% static 'images/login.png' %}">
-				</a>
-				<a href="{% url 'logout' %}" id="logout">
-					<img class="login-icon" src="{% static 'images/logout.png' %}">
-				</a>
-				<a href="{% url 'cart' %}">
-					<img id="cart-icon" src="{% static 'images/cart.jpeg' %}">
-				</a>
+			<a href="{% url 'login' %}" id="login">
+				<img class="login-icon" src="{% static 'images/login.png' %}">
+			</a>
+			<a href="{% url 'logout' %}" id="logout">
+				<img class="login-icon" src="{% static 'images/logout.png' %}">
+			</a>
+			<a href="{% url 'cart' %}" id="cart">
+				<img id="cart-icon" src="{% static 'images/cart.jpeg' %}">
 				<p id="cart-total">{{cartItems}}</p>
+			</a>
+		</div>
 	</nav>
 
 	<nav class="navbar navbar-bottom">
@@ -131,10 +134,10 @@
 			<a href="{% url 'apparel' %}">Apparel & Accessories</a>
 			<a href="{% url 'cosmetic' %}">Beauty Products</a>
 			<a href="{% url 'book' %}">Books</a>
-			<a href="{% url 'daily' %}">Daily Necessities</a>
-			<a href="{% url 'kitchen' %}">Kitchen Utensils</a>
-			<a href="{% url 'pet' %}">Pet Supplies</a>
-			<a href="{% url 'health' %}">Health & Wellness</a>
+			<a href="{% url 'daily' %}" id="daily">Daily Necessities</a>
+			<a href="{% url 'kitchen' %}" id="kitchen">Kitchen Utensils</a>
+			<a href="{% url 'pet' %}" id="pet">Pet Supplies</a>
+			<a href="{% url 'health' %}" id="health">Health & Wellness</a>
 		</div>
 	</nav>
 
@@ -173,6 +176,66 @@
 			document.getElementById('user_setting').classList.add('hidden')
 		}
 
+		// Dynamic css style
+		window.addEventListener('resize', () => {
+			if(window.innerWidth < 1057){
+				$('#search-box').css('width', '500px')
+				$('body').css('overflow-x', 'auto')
+				$('.navbar').css('width', '1160px')
+				$('.row').css('width', '1060px')
+			}
+			else{
+				$('#search-box').css('width', '50vw')
+				$('body').css('overflow-x', 'hidden')
+				$('.navbar').css('width', window.innerWidth)
+				
+			}
+			if(window.innerWidth < 1160)
+				$('#kitchen').css('display', 'none')
+			else
+				$('#kitchen').css('display', 'inline')
+			if(window.innerWidth < 1280)
+				$('#pet').css('display', 'none')
+			else
+				$('#pet').css('display', 'inline')
+			if(window.innerWidth < 1425)
+				$('#health').css('display', 'none')
+			else
+				$('#health').css('display', 'inline')
+		})
+
+		// default refresh
+		if(window.innerWidth < 1057){
+			$('#search-box').css('width', '500px')
+			$('body').css('overflow-x', 'auto')
+			$('.navbar').css('width', '1160px')
+			$('.row').css('width', '1060px')
+		}
+		else{
+			$('#search-box').css('width', '50vw')
+			$('body').css('overflow-x', 'hidden')
+			$('.navbar').css('width', window.innerWidth)
+			
+		}
+		if(window.innerWidth < 1160)
+			$('#kitchen').css('display', 'none')
+		else
+			$('#kitchen').css('display', 'inline')
+		if(window.innerWidth < 1280)
+			$('#pet').css('display', 'none')
+		else
+			$('#pet').css('display', 'inline')
+		if(window.innerWidth < 1425)
+			$('#health').css('display', 'none')
+		else
+			$('#health').css('display', 'inline')
+		
+		// responsive
+		if(window.screen.width < 450){
+			$('.navbar').css('width', window.screen.width)
+			$('.row').css('width', window.screen.width)
+			$('#search-box').css('width', '90vw')
+		}
 	</script>
 </body>
 </html>

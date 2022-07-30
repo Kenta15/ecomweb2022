@@ -1,7 +1,14 @@
 .card{
    margin-top:20px;
+   overflow:hidden;
 }
 
+.col-md-3{
+    width:20%;
+}
+.card-body{
+    width:500px;
+}
 #cancel-btn{
     color:black;
     border:1px solid #D6DBDF;
@@ -39,4 +46,22 @@ label.btn {
 .btn-success{
     padding:3px;
     margin-bottom: 3px;
+}
+@media (max-width:991px){
+    .card-body{
+        width:430px;
+    }
+}
+@media (max-width:760px){
+    .col-md-3{
+        width:48%;
+    }
+}
+@media (max-width:450px){
+    .card-body{
+        width:350px;
+    }
+    .col-md-3{
+        width:100%;
+    }
 }

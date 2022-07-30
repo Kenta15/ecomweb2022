@@ -2,11 +2,9 @@
 {% load static %}
 {% block content %}
 
-<link rel="stylesheet" type="text/css" href="{% static 'css/transition.css' %}">
-
 <h4>Health & Wellness</h4>
 
-<div class="row slide-in">
+<div class="row">
     {% for product in products%}
         {% if product.category == "Health" %}
             <div class="col-lg-3">
@@ -23,6 +21,5 @@
         {% endif %}
     {% endfor %}
 </div>
-<a class="left" href="{% url 'pet' %}"><img class="L" src="{% static 'images/L.png' %}"></a>
 
 {% endblock content %}

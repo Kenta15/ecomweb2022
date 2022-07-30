@@ -58,6 +58,8 @@ MIDDLEWARE = [
     'whitenoise.middleware.WhiteNoiseMiddleware',
 ]
 
+SECURE_CROSS_ORIGIN_OPENER_POLICY='same-origin-allow-popups'
+
 ROOT_URLCONF = 'ecommerce.urls'
 
 TEMPLATES = [

@@ -1,17 +1,19 @@
 var element = document.getElementById('country-btn')
 
-element.addEventListener("click", function(){
-    var country = document.getElementById("country")
-    var selected_country = country.options[country.selectedIndex].value;
-    if(user=='AnonymousUser'){
-        addCookieCountry(selected_country)
-        alert('Please login to change the country')
-    }
-    else{
-        updateCountry(selected_country)
-        alert('Country was changed')
-    }
-});
+if(element){
+    element.addEventListener("click", function(){
+        var country = document.getElementById("country")
+        var selected_country = country.options[country.selectedIndex].value;
+        if(user=='AnonymousUser'){
+            addCookieCountry(selected_country)
+            alert('Please login to change the country')
+        }
+        else{
+            updateCountry(selected_country)
+            alert('Country was changed')
+        }
+    })
+}
 
 function addCookieCountry(selected_country){
 
