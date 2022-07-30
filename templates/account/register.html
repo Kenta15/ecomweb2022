@@ -1,6 +1,7 @@
 {% load static %}
 <link rel="stylesheet" type="text/css" href="{% static 'css/register.css' %}">
 <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -14,23 +15,23 @@
 		<form method="POST">
             {% csrf_token %}
 			<h1>Sign Up</h1>
-            <p>Your name</p>
+            <p class="tag">Your name</p>
 			<div>
 				{{form.username}}
 			</div>
-            <p>Your email</p>
+            <p class="tag">Your email</p>
             <div>
 				{{form.email}}
 			</div>
-            <p>Your password</p>
+            <p class="tag">Your password</p>
 			<div>
 				{{form.password1}}
 			</div>
-            <p>Confirm your password</p>
+            <p class="tag">Confirm your password</p>
             <div>
 				{{form.password2}}
 			</div>
-			<div>
+			<div class = "submit">
 				{{form.errors}}
 				<input type="submit" value="Sign up"/>
                 <p>Already have an account?</p>
@@ -39,6 +40,30 @@
 		</form>
 	</section>
 </div>
+
+<script>
+
+if(window.screen.width < 450){
+
+	$('#content').css('margin-top', '350px')
+	$('#content').css('margin-left', '100px')
+	$('#content').css('width', '700px')
+	$('#content').css('height', '700px')
+	$('input').css('margin-top','50px')
+	$('input').css('padding','15px')
+	$('h1').css('font-size','30px')
+	$('p, a').css('font-size','20px')
+	$('a').css('margin-top','60px')
+	$('.tag').css('position', 'absolute')
+	$('.tag').css('margin-top', '20px')
+	$('.submit').css('margin-left', '-20px')
+	$('.submit input').css('padding', '10px')
+	$('.submit p').css('margin-top', '60px')
+	$('.submit p').css('margin-left', '0')
+
+
+}
+</script>
 
 </body>
 </html>

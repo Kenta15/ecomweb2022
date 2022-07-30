@@ -1,6 +1,8 @@
 {% load static %}
+
 <link rel="stylesheet" type="text/css" href="{% static 'css/login.css' %}">
 <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -25,7 +27,7 @@
 			{% for message in messages%}
 				<p id="error-message">{{message}}</p>
 			{% endfor %}
-			<div>
+			<div class="submit">
 				<input type="submit" value="Send email"/>
                 <a href="{% url 'login' %}" class="link">Sign In</a>
 				<a href="{% url 'register' %}" class="link">Sign Up</a>
@@ -45,7 +47,25 @@
             icon:'success',
             }).then((val)=>{
             window.location.href = "{% url 'store' %}"
-        });
+        })
     })
+
+	if(window.screen.width < 450){
+
+		$('#content').css('margin-top', '350px')
+		$('#content').css('margin-left', '100px')
+		$('#content').css('width', '700px')
+		$('#content').css('height', '450px')
+		$('input').css('margin-top','50px')
+		$('input').css('padding','15px')
+		$('h1').css('font-size','30px')
+		$('p, a').css('font-size','20px')
+		$('a').css('margin-top','60px')
+		$('.submit').css('margin-left', '130px')
+		$('.tag').css('position', 'absolute')
+		$('.tag').css('margin-top', '20px')
+		$('.submit input').css('padding', '10px')
+
+	}
 
 </script>
